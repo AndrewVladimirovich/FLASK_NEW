@@ -1,7 +1,5 @@
 from flask import Flask, render_template
 from blog.views.users import users_app
-from datetime import time
-from werkzeug.exceptions import BadRequest
 
 app = Flask(__name__)
 

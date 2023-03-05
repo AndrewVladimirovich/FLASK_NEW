@@ -11,11 +11,11 @@ USERS = {
 }
 
 
-@users_app.route("/")
+@users_app.route("/", endpoint="list")
 def users_list():
     return render_template("users/list.html", users=USERS)
 
-@users_app.route("/<int:user_id>/")
+@users_app.route("/<int:user_id>/", endpoint="details")
 def user_details(user_id: int):
     try:
         user_name = USERS[user_id]
