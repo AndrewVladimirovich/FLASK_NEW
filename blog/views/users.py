@@ -2,7 +2,7 @@ from flask import Blueprint, render_template
 from werkzeug.exceptions import NotFound
 
 
-users_app = Blueprint("users_app", __name__, url_prefix='/users', static_folder='../static')
+users_app = Blueprint("users_app", __name__)
 
 USERS = {
     1: "Alex",
