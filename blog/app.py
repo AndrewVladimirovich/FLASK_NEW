@@ -2,6 +2,8 @@ from flask import Flask, render_template
 from blog.views.users import users_app
 from blog.views.articles import articles_app
 from blog.models.database import db
+from blog.views.auth import login_manager, auth_app
+
 
 
 app = Flask(__name__)
@@ -40,4 +42,8 @@ def create_users():
     db.session.add(james)
     db.session.commit()
     print("done! created users:", admin, james)
+
+app.config["SECRET_KEY"] = "abcdefg123456"
+app.register_blueprint(auth_app, url_prefix="/auth")
+login_manager.init_app(app)
 
