@@ -51,3 +51,7 @@ import os
 
 cfg_name = os.environ.get("CONFIG_NAME") or "ProductionConfig"
 app.config.from_object(f"blog.configs.{cfg_name}")
+
+from flask_migrate import Migrate
+
+migrate = Migrate(app, db)
