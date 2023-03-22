@@ -13,6 +13,8 @@ class User(db.Model, UserMixin):
         return f"<User #{self.id} {self.username!r}>"
     email = Column(String(255), nullable=False, default="", server_default="")
     _password = Column(LargeBinary, nullable=True)
+    first_name = Column(String(120), unique=False, nullable=False, default="", server_default="")
+    last_name = Column(String(120), unique=False, nullable=False, default="", server_default="")
 
     @property
     def password(self):
