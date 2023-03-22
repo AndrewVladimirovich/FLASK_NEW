@@ -28,20 +28,17 @@ def init_db():
     """
     db.create_all()
     print("done!")
-@app.cli.command("create-users")
-def create_users():
-    """
-    Run in your terminal:
-    flask create-users
-    > done! created users: <User #1 'admin'> <User #2 'james'>
-    """
+@app.cli.command("create-admin")
+def create_admin():
+
     from blog.models import User
     admin = User(username="admin", is_staff=True)
-    james = User(username="james")
+    admin.password = os.environ.get("ADMIN_PASSWORD") or "adminpass"
     db.session.add(admin)
-    db.session.add(james)
     db.session.commit()
-    print("done! created users:", admin, james)
+
+
+print("created admin:", admin)
 
 app.config["SECRET_KEY"] = "abcdefg123456"
 app.register_blueprint(auth_app, url_prefix="/auth")
@@ -55,3 +52,8 @@ app.config.from_object(f"blog.configs.{cfg_name}")
 from flask_migrate import Migrate
 
 migrate = Migrate(app, db)
+
+
+from blog.security import flask_bcrypt
+
+flask_bcrypt.init_app(app)
