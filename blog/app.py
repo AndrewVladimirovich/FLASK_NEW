@@ -55,3 +55,8 @@ app.config.from_object(f"blog.configs.{cfg_name}")
 from flask_migrate import Migrate
 
 migrate = Migrate(app, db)
+
+
+from blog.security import flask_bcrypt
+
+flask_bcrypt.init_app(app)
