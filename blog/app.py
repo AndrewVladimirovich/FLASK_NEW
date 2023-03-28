@@ -60,3 +60,21 @@ migrate = Migrate(app, db)
 from blog.security import flask_bcrypt
 
 flask_bcrypt.init_app(app)
+
+@app.cli.command("create-tags")
+def create_tags():
+"""
+Run in your terminal:
+➜ flask create-tags
+"""
+from blog.models import Tag for name in [
+        "flask",
+        "django",
+        "python",
+        "sqlalchemy",
+        "news",
+    ]:
+        tag = Tag(name=name)
+        db.session.add(tag)
+    db.session.commit()
+    print("created tags")
