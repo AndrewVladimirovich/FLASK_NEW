@@ -78,3 +78,7 @@ from blog.models import Tag for name in [
         db.session.add(tag)
     db.session.commit()
     print("created tags")
+
+from blog.admin import admin
+
+admin.init_app(app)
