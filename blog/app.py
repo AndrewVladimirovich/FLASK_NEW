@@ -4,6 +4,10 @@ from blog.views.articles import articles_app
 from blog.models.database import db
 from blog.views.auth import login_manager, auth_app
 from blog.views.authors import authors_app
+from blog.api import init_api
+
+
+api = init_api(app)
 
 app.register_blueprint(authors_app, url_prefix="/authors")
 
