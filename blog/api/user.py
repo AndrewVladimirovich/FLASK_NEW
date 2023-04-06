@@ -3,6 +3,8 @@ from blog.schemas import UserSchema
 from blog.models.database import db
 from blog.models import User
 
+from blog.permissions.user import UserPermission
+
 class UserList(ResourceList):
     schema = UserSchema
     data_layer = {
@@ -14,4 +16,5 @@ class UserDetail(ResourceDetail):
     data_layer = {
         "session": db.session,
         "model": User,
+        "permission_get": [UserPermission],
     }
