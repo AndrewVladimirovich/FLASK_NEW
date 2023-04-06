@@ -9,6 +9,7 @@ class ArticleListEvents(EventsResource):
     def event_get_count(self):
         return {"count": Article.query.count()}
 
+
 class ArticleList(ResourceList):
     events = ArticleListEvents
     schema = ArticleSchema
@@ -17,9 +18,11 @@ class ArticleList(ResourceList):
         "model": Article,
     }
 
+
 class ArticleDetail(ResourceDetail):
     schema = ArticleSchema
     data_layer = {
         "session": db.session,
         "model": Article,
     }
+
